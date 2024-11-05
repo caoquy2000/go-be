@@ -2,7 +2,7 @@ package controller
 
 import (
 	"go-be/internal/service"
-	"net/http"
+	"go-be/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,8 +18,5 @@ func NewUserController() *UserController {
 }
 
 func (uc *UserController) GetUserByID(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Hello world!",
-		"name": uc.userService.GetUserInfo(),
-	})
+	response.SuccessResponse(c, 20001, uc.userService.GetUserInfo())
 }
